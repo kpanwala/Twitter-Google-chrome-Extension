@@ -1,34 +1,18 @@
 
-    var contextsLists =["selection","link","image","page"];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // $t=[];
+        // $t=$(this.responseXml).find("div.cb-col-100 div.cb-hm-scg-blk").html();
+        // document.getElementById("abc").innerHTML = $t;
+        var xmlDoc = this.response;
+        console.log(xmlDoc);      
+        document.getElementById("abc").innerHTML =xmlDoc;
+      }
+    };
+    xhttp.open("GET", "https://www.cricbuzz.com/cricket-match/live-scores", true);
+    xhttp.send();
 
-    for(i=0;i<contextsLists.length;i++){
-        var context=contextsLists[i];
-        var titleX="Twitter Toolkit: Share this "+context+" on your twitter profile";
-        chrome.contextMenus.create({
-            title:titleX,
-            onclick: myFunction,
-            id:context,
-            contexts:[context]
-        });
-        
+    function xyz(){
+        window.open("https://www.cricbuzz.com/cricket-match/live-scores");
     }
-
-
-function myFunction(data,tab){
-    switch(data.menuItemId)
-    {
-        case 'selection':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(data.selectionText),type:"panel"});
-            break;
-        case 'link':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.linkUrl),type:"panel"});
-            break;
-        case 'image':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.srcUrl),type:"panel"});
-            break;
-        case 'page':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(tab.title)+"&url="+encodeURIComponent(data.pageUrl),type:"panel"});
-            break;
-
-    }
-}

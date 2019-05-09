@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Twitter Social Toolkit",
-    "description": "Allows you to share images,texts,links,pages,etc",
-    "version": "1.0",
+    "name": "Crickbuzz Shortcut",
+    "description": "Now you can keep live track of the score of cricket matches!!",
+    "version": "1.1",
     "icons": {
       "128": "icon128.png",
       "64": "icon64.png",
@@ -14,7 +14,9 @@
       "default_popup":"popup.html"
     },
     "background":{
-       "scripts":["background.js"]
+       "scripts":["jquery.js","background.js"]
     },
-    "permissions":["contextMenus"]
+    "permissions": [
+      "https://www.cricbuzz.com/*"
+    ]
   }
